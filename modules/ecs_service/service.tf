@@ -61,7 +61,7 @@ resource "aws_security_group" "test" {
 # Create an ECS service to run on the cluster
 resource "aws_ecs_service" "test" {
   name               = "${var.name}-service"
-  cluster            = var.cluster
+  cluster            = var.cluster.id
   task_definition    = aws_ecs_task_definition.test.arn
   desired_count      = var.desired_count
   launch_type        = "FARGATE"

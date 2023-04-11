@@ -104,14 +104,14 @@ resource "aws_route_table_association" "private2" {
 
 # Create a NAT gateway in the public subnet and associate it with the public route table
 resource "aws_nat_gateway" "test" {
-  allocation_id = aws_eip.test.id
+  allocation_id = "eipalloc-0677c56e1d972052a"
   subnet_id = aws_subnet.public.id
   tags = {
     Name = "test-nat-gateway"
   }
 }
 
-# Create an Elastic IP address for the NAT gateway
+#Create an Elastic IP address for the NAT gateway
 # resource "aws_eip" "test" {
 #   vpc = true
 #   tags = {

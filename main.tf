@@ -4,7 +4,8 @@ module "service" {
   source = "./modules/ecs_service"
   name   = "nginx"
   container_name = "nginx"
-  cluster = aws_ecs_cluster.test.id
+  # image = "416572346136.dkr.ecr.us-east-2.amazonaws.com/test-nginx:latest"
+  cluster = aws_ecs_cluster.test
   subnet_id1 = aws_subnet.private.id
   subnet_id2 = aws_subnet.private2.id
   vpc_id = aws_vpc.test.id
