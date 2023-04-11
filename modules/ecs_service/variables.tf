@@ -55,10 +55,6 @@ variable "vpc_id" {
   description = "Enter the id of VPC"
 }
 
-# variable target_group_arn {
+# variable health_check_path {
 #   description = "ARN of the ALB target group"
 # }
-
-variable health_check_path {
-  description = "ARN of the ALB target group"
-}

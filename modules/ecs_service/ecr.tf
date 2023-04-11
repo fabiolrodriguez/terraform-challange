@@ -1,5 +1,5 @@
-resource "aws_ecr_repository" "xpass-repo" {
-  name                 = "xpass-${var.name}"
+resource "aws_ecr_repository" "test-repo" {
+  name                 = "test-${var.name}"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {

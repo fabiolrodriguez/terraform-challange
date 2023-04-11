@@ -30,8 +30,8 @@ resource "aws_ecs_task_definition" "test" {
           logDriver: "awslogs",
           options: {
               "awslogs-create-group": "true",
-              "awslogs-group": "/ecs/xpass-usuario-v1",
-              "awslogs-region": "us-east-1",
+              "awslogs-group": "/ecs/interview-25",
+              "awslogs-region": "us-east-2",
               "awslogs-stream-prefix": "ecs"
           }
       }

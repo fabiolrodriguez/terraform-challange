@@ -1,3 +1,8 @@
+# Get local public IP
+data "http" "myip" {
+  url = "http://ipv4.icanhazip.com"
+}
+
 # Create a security group to allow traffic to alb
 resource "aws_security_group" "alb" {
   name_prefix = "alb-sg"
@@ -6,14 +11,14 @@ resource "aws_security_group" "alb" {
     from_port = 80
     to_port   = 80
     protocol  = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${chomp(data.http.myip.body)}/32"]
   }
   
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${chomp(data.http.myip.body)}/32"]
   }
 
   egress {

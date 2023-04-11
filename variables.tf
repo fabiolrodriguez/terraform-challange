@@ -29,10 +29,70 @@ variable "public_subnet2" {
     default = "10.1.200.0/24"
 }
 
-# variable "org_id" {
-#     default = "604523b27dac95237159238f"
-# }
+# RDS
 
-# variable "hosted_zone_id" {
-#     default = "Z03784031V2KZIRLBHZDF"
-# }
+variable "engine" {
+  description = "The database engine"
+  type = string
+  default = "mysql"
+}
+
+variable "identifier" {
+  description = "The name of the RDS instance"
+  default = "database-interview-25"
+  type = string
+}
+
+variable "name" {
+  description = "The database name"
+  default = "interview_25"
+  type = string
+}
+
+variable "allocated_storage" {
+  description = "The amount of allocated storage."
+  type = number
+  default = 20
+}
+
+variable "storage_type_db" {
+  description = "type of the storage"
+  type = string
+  default = "gp3"
+}
+
+variable "username" {
+  description = "Username for the master DB user."
+  default = "root"
+  type = string
+}
+
+variable "password" {
+  description = "password of the database"
+  default = "Interview$$2023Z"
+  type = string
+}
+
+variable "instance_class" {
+  description = "The RDS instance class"
+  default = "db.t3.micro"
+  type = string
+}
+
+variable "engine_version" {
+  description = "The engine version"
+  default = "8.0.32"
+  type = string
+}
+
+variable "skip_final_snapshot" {
+  description = "skip snapshot"
+  default = "true"
+  type = string
+}
+
+variable "port" {
+  description = "The port on which the DB accepts connections"
+  default = "3306"
+  type = number
+}
