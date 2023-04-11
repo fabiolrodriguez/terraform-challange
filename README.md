@@ -1,6 +1,10 @@
-# terraform-challange
+# Terraform ECS Challange
 
 This repo contains terraform files to create an entire infrastrucute to run ECS applications, using a MySQL RDS database.
+
+## Overall Architecture
+
+![topology](ecs.png)
 
 ## Folder Structure
 
