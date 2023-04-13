@@ -67,12 +67,6 @@ variable "username" {
   type = string
 }
 
-variable "password" {
-  description = "password of the database"
-  default = "Interview$$2023Z"
-  type = string
-}
-
 variable "instance_class" {
   description = "The RDS instance class"
   default = "db.t3.micro"

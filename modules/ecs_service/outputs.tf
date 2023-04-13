@@ -11,3 +11,7 @@ output "service_id" {
 output target_group_arn {
   value = aws_lb_target_group.test.arn
 }
+
+output security_group{
+  value = aws_security_group.test.id
+}

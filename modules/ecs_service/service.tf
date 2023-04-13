@@ -9,7 +9,9 @@ resource "aws_ecs_task_definition" "test" {
   memory                   = var.memory
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
-
+  tags = {
+    Name = "ECS Task definition for interview_25 ALB"
+  }
 
   container_definitions = jsonencode([
     {

@@ -1,5 +1,8 @@
 resource "aws_ecs_cluster" "test" {
   name = "test-cluster"
+  tags = {
+    Name = "Fargate cluster for interview_25"
+  }
 }
 
 resource "aws_ecs_cluster_capacity_providers" "test" {

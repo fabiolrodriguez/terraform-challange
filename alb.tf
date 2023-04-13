@@ -27,6 +27,9 @@ resource "aws_security_group" "alb" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  tags = {
+    Name = "SG for interview_25 ALB"
+  }
 }
 
 # Create an Application Load Balancer
@@ -37,14 +40,34 @@ resource "aws_lb" "test" {
   subnets            = [aws_subnet.public.id,aws_subnet.public2.id]
   security_groups    = [aws_security_group.alb.id]
   tags = {
-    Name = "test-alb"
+    Name = "ALB for interview_25"
   }
 }
 
-# resource "aws_route53_record" "www" {
-#   zone_id = var.hosted_zone_id
-#   name    = "www.example.com"
-#   type    = "A"
-#   ttl     = 300
-#   records = [aws_lb.test.public_ip]
-# }
+resource "aws_acm_certificate" "test" {
+  domain_name       = "flrops.cloud"
+  validation_method = "DNS"
+
+  tags = {
+    Name = "ACM Certificate for interview_25 ALB"
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_route53_zone" "flrops_cloud" {
+  name = "flrops.cloud"
+}
+
+resource "aws_route53_record" "flrops_cloud_lb" {
+  zone_id = aws_route53_zone.flrops_cloud.zone_id
+  name    = "."
+  type    = "A"
+  alias {
+    name    = aws_lb.test.dns_name
+    zone_id = aws_lb.test.zone_id
+    evaluate_target_health = true
+  }
+}

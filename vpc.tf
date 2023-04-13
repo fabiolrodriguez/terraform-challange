@@ -2,7 +2,7 @@
 resource "aws_vpc" "test" {
   cidr_block = var.cidr
   tags = {
-    Name = var.vpc_name
+    Name = "VPC for Interview 25"
   }
 }
 
