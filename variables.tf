@@ -35,6 +35,12 @@ variable "engine" {
   description = "The database engine"
   type = string
   default = "mysql"
+  validation {
+    error_message = "Please use a valid database engine"
+    condition = can(regex(join("", concat(["^("], [join("|", [ 
+        "mysql", "postgres"
+    ])], [")$"])), var.engine))
+  }    
 }
 
 variable "identifier" {
@@ -59,6 +65,12 @@ variable "storage_type_db" {
   description = "type of the storage"
   type = string
   default = "gp3"
+  validation {
+    error_message = "Please use a valid storage type."
+    condition = can(regex(join("", concat(["^("], [join("|", [ 
+        "gp2", "gp3"
+    ])], [")$"])), var.storage_type_db))
+  }
 }
 
 variable "username" {
@@ -71,6 +83,12 @@ variable "instance_class" {
   description = "The RDS instance class"
   default = "db.t3.micro"
   type = string
+  validation {
+    error_message = "Please use a valid instance type."
+    condition = can(regex(join("", concat(["^("], [join("|", [ 
+        "db.t3.micro", "db.t3.small"
+    ])], [")$"])), var.instance_class))
+  }  
 }
 
 variable "engine_version" {
@@ -87,6 +105,12 @@ variable "skip_final_snapshot" {
 
 variable "port" {
   description = "The port on which the DB accepts connections"
-  default = "3306"
+  default = 3306
   type = number
+  validation {
+    error_message = "Please use a valid port."
+    condition = can(regex(join("", concat(["^("], [join("|", [ 
+        3306, 5432
+    ])], [")$"])), var.port))
+  }
 }

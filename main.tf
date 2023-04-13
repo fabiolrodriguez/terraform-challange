@@ -10,6 +10,9 @@ module "service" {
   subnet_id2 = aws_subnet.private2.id
   vpc_id = aws_vpc.test.id
   health_check_path = "/"
+  container_port = 80
+  memory = 512
+  cpu = 256
 }
 
 resource "aws_lb_listener" "http" {

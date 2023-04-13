@@ -13,6 +13,12 @@ variable "container_port" {
   description = "The port on which the container listens"
   type        = number
   default     = 80
+  validation {
+    error_message = "Please use a valid port. Allowed values is 80, 443 and 8080"
+    condition = can(regex(join("", concat(["^("], [join("|", [ 
+        80, 443, 8080
+    ])], [")$"])), var.container_port))
+  }
 }
 
 variable "image" {
@@ -25,12 +31,24 @@ variable "cpu" {
   description = "The amount of CPU units to reserve for the container"
   type        = number
   default     = 256
+  validation {
+    error_message = "Please use a valid value."
+    condition = can(regex(join("", concat(["^("], [join("|", [ 
+        128, 256, 512, 1024
+    ])], [")$"])), var.cpu))
+  }
 }
 
 variable "memory" {
   description = "The amount of memory to reserve for the container"
   type        = number
   default     = 512
+  validation {
+    error_message = "Please use a valid value."
+    condition = can(regex(join("", concat(["^("], [join("|", [ 
+        128, 256, 512, 1024, 2048
+    ])], [")$"])), var.memory))
+  }
 }
 
 variable "desired_count" {
